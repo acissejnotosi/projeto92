@@ -23,20 +23,19 @@ public class Pratica92 {
 
         System.out.println(sdf.format(new Date()));
 
-        MensagemTask2 esperandoMensagem= new MensagemTask2();
+     
         System.out.println("Execução iniciada");
         Timer timer = new Timer("hora-cheia-timer");
+        Timer timer2= new Timer("esperando");
         long data = new Date().getTime();
         System.out.println(sdf.format(data));
         long dataminuto = data / 1000 * 60 * 60;
-        if (dataminuto % 2 != 0) {
-            System.out.println("Esperando...");
-
-        }
+        
         long atraso = HORA_CHEIA - new Date().getTime() % HORA_CHEIA;
-
-        timer.scheduleAtFixedRate(new MensagemTask(esperandoMensagem), atraso, INTERVALO_CHEIO);
-        timer.scheduleAtFixedRate(new MensagemTask2(), 10, INTERVALO_CHEIO);
+        long atraso2= 10000 - new Date().getTime() % HORA_CHEIA;
+                
+        timer.scheduleAtFixedRate(new MensagemTask(), atraso, INTERVALO_CHEIO);
+        timer2.scheduleAtFixedRate(new MensagemTask2(), atraso2, INTERVALO_CHEIO);
 
         System.out.println("Pressione Enter para terminar...");
         System.in.read();
